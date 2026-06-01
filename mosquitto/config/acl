@@ -1,0 +1,9 @@
+user roomsense_esp32
+topic write dht11/temp
+topic write dht11/humidity
+topic write ndir/co2
+
+user homeassistant
+topic read dht11/#
+topic read ndir/#
+

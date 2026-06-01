@@ -1,0 +1,27 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: roomsense-mosquitto
+    restart: unless-stopped
+    entrypoint:
+      - /bin/sh
+      - /mosquitto/config/start.sh
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config:ro
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: roomsense-homeassistant
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    environment:
+      TZ: ${TZ:-Europe/Zagreb}
+    ports:
+      - "8123:8123"
+    volumes:
+      - ./home-assistant:/config

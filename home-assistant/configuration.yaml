@@ -1,0 +1,29 @@
+default_config:
+
+mqtt:
+  sensor:
+    - name: "Room Temperature"
+      unique_id: roomsense_temperature
+      state_topic: "dht11/temp"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      value_template: "{{ value | float }}"
+
+    - name: "Room Humidity"
+      unique_id: roomsense_humidity
+      state_topic: "dht11/humidity"
+      unit_of_measurement: "%"
+      device_class: humidity
+      state_class: measurement
+      value_template: "{{ value | float }}"
+
+    - name: "Room CO2"
+      unique_id: roomsense_co2
+      state_topic: "ndir/co2"
+      unit_of_measurement: "ppm"
+      device_class: carbon_dioxide
+      state_class: measurement
+      value_template: "{{ value | int }}"
+
+automation: !include automations.yaml
