@@ -1,6 +1,9 @@
 default_config:
 
 mqtt:
+  broker: mosquitto
+  username: homeassistant
+  password: roomsense-demo-pass
   sensor:
     - name: "Room Temperature"
       unique_id: roomsense_temperature

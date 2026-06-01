@@ -1,83 +1,83 @@
-- id: roomsense_co2_high_alert
-  alias: "RoomSense CO2 visoka razina"
-  mode: single
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.room_co2
-      above: 1000
-  action:
-    - service: persistent_notification.create
-      data:
-        title: "Upozorenje - CO2"
-        message: "CO2 razina je {{ states('sensor.room_co2') }} ppm. Potrebno je provjetravanje."
-        notification_id: roomsense_co2_alert
+automation:
+  - id: co2_high_alert
+    alias: "CO2 visoka razina"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.room_co2
+        above: 1000
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "Upozorenje - CO2"
+          message: "CO2 razina je {{ states('sensor.room_co2') }} ppm! Potrebno provjetravanje."
+          notification_id: co2_alert
 
-- id: roomsense_co2_critical_alert
-  alias: "RoomSense CO2 kriticna razina"
-  mode: single
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.room_co2
-      above: 2000
-  action:
-    - service: persistent_notification.create
-      data:
-        title: "Kriticno - CO2"
-        message: "CO2 razina je {{ states('sensor.room_co2') }} ppm. Potrebno je hitno provjetravanje."
-        notification_id: roomsense_co2_critical
+  - id: co2_critical_alert
+    alias: "CO2 kritična razina"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.room_co2
+        above: 2000
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "KRITIČNO - CO2"
+          message: "CO2 razina je {{ states('sensor.room_co2') }} ppm! Hitno provjetravanje!"
+          notification_id: co2_critical
 
-- id: roomsense_co2_normal
-  alias: "RoomSense CO2 normalizacija"
-  mode: single
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.room_co2
-      below: 800
-  action:
-    - service: persistent_notification.dismiss
-      data:
-        notification_id: roomsense_co2_alert
-    - service: persistent_notification.dismiss
-      data:
-        notification_id: roomsense_co2_critical
+  - id: co2_normal
+    alias: "CO2 normalizacija"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.room_co2
+        below: 800
+    condition:
+      - condition: state
+        entity_id: sensor.room_co2
+        state: "unavailable"
+        match: "not"
+    action:
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: co2_alert
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: co2_critical
 
-- id: roomsense_temperature_high_alert
-  alias: "RoomSense temperatura previsoka"
-  mode: single
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.room_temperature
-      above: 35
-  action:
-    - service: persistent_notification.create
-      data:
-        title: "Upozorenje - temperatura"
-        message: "Temperatura je {{ states('sensor.room_temperature') }} °C."
-        notification_id: roomsense_temperature_alert
+  - id: temperature_high_alert
+    alias: "Temperatura previsoka"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.room_temperature
+        above: 35
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "Upozorenje - Temperatura"
+          message: "Temperatura je {{ states('sensor.room_temperature') }}°C! Previsoka."
+          notification_id: temp_alert
 
-- id: roomsense_temperature_low_alert
-  alias: "RoomSense temperatura preniska"
-  mode: single
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.room_temperature
-      below: 15
-  action:
-    - service: persistent_notification.create
-      data:
-        title: "Upozorenje - temperatura"
-        message: "Temperatura je {{ states('sensor.room_temperature') }} °C."
-        notification_id: roomsense_temperature_alert
+  - id: temperature_low_alert
+    alias: "Temperatura preniska"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.room_temperature
+        below: 15
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "Upozorenje - Temperatura"
+          message: "Temperatura je {{ states('sensor.room_temperature') }}°C! Preniska."
+          notification_id: temp_alert
 
-- id: roomsense_temperature_normal
-  alias: "RoomSense temperatura normalizacija"
-  mode: single
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.room_temperature
-      above: 15
-      below: 35
-  action:
-    - service: persistent_notification.dismiss
-      data:
-        notification_id: roomsense_temperature_alert
+  - id: temperature_normal
+    alias: "Temperatura normalizacija"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.room_temperature
+        above: 15
+        below: 35
+    action:
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: temp_alert
