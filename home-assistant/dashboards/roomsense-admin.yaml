@@ -1,0 +1,25 @@
+views:
+  - title: Administracija
+    path: admin
+    icon: mdi:account-cog
+    cards:
+      - type: markdown
+        title: RoomSense pristup sobama
+        content: >
+          Ovaj dashboard je samo za Home Assistant administratora.
+
+          Korisnike dodaj kroz Settings > People > Users. 
+
+      - type: entities
+        title: Soba 1
+        entities:
+          - sensor.roomsense_room1_temperature
+          - sensor.roomsense_room1_humidity
+          - sensor.roomsense_room1_co2
+
+      - type: entities
+        title: Soba 2
+        entities:
+          - sensor.roomsense_room2_temperature
+          - sensor.roomsense_room2_humidity
+          - sensor.roomsense_room2_co2

@@ -1,0 +1,48 @@
+views:
+  - title: Soba 1
+    path: room1
+    icon: mdi:door
+    visible:
+      - user: 404c39f6490d4cebb4505bb87879724f
+      - user: 98f8b9391bf24783a9a3f1a791e0f69f
+    cards:
+      - type: entities
+        title: Soba 1
+        entities:
+          - entity: sensor.roomsense_room1_temperature
+            name: Temperatura
+          - entity: sensor.roomsense_room1_humidity
+            name: Vlaga
+          - entity: sensor.roomsense_room1_co2
+            name: CO2
+      - type: history-graph
+        title: Povijest mjerenja
+        hours_to_show: 1
+        entities:
+          - sensor.roomsense_room1_temperature
+          - sensor.roomsense_room1_humidity
+          - sensor.roomsense_room1_co2
+
+  - title: Soba 2
+    path: room2
+    icon: mdi:door
+    visible:
+      - user: 404c39f6490d4cebb4505bb87879724f
+      - user: 0ae87627f21040a0852e4ed45a7107b7
+    cards:
+      - type: entities
+        title: Soba 2
+        entities:
+          - entity: sensor.roomsense_room2_temperature
+            name: Temperatura
+          - entity: sensor.roomsense_room2_humidity
+            name: Vlaga
+          - entity: sensor.roomsense_room2_co2
+            name: CO2
+      - type: history-graph
+        title: Povijest mjerenja
+        hours_to_show: 1
+        entities:
+          - sensor.roomsense_room2_temperature
+          - sensor.roomsense_room2_humidity
+          - sensor.roomsense_room2_co2

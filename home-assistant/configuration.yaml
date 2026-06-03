@@ -1,29 +1,93 @@
 default_config:
 
+lovelace:
+  dashboards:
+    roomsense-rooms:
+      mode: yaml
+      title: RoomSense sobe
+      icon: mdi:floor-plan
+      show_in_sidebar: true
+      filename: dashboards/roomsense-rooms.yaml
+    roomsense-admin:
+      mode: yaml
+      title: RoomSense admin
+      icon: mdi:account-cog
+      show_in_sidebar: true
+      require_admin: true
+      filename: dashboards/roomsense-admin.yaml
+
 mqtt:
   sensor:
-    - name: "Room Temperature"
-      unique_id: roomsense_temperature
-      state_topic: "dht11/temp"
+    - name: "RoomSense Room 1 Temperature"
+      unique_id: roomsense_room1_temperature
+      default_entity_id: sensor.roomsense_room1_temperature
+      state_topic: "roomsense/room1/telemetry"
       unit_of_measurement: "°C"
       device_class: temperature
       state_class: measurement
-      value_template: "{{ value | float }}"
+      value_template: "{{ value_json.temperature | float }}"
+      availability_topic: "roomsense/room1/status"
+      payload_available: "online"
+      payload_not_available: "offline"
 
-    - name: "Room Humidity"
-      unique_id: roomsense_humidity
-      state_topic: "dht11/humidity"
+    - name: "RoomSense Room 1 Humidity"
+      unique_id: roomsense_room1_humidity
+      default_entity_id: sensor.roomsense_room1_humidity
+      state_topic: "roomsense/room1/telemetry"
       unit_of_measurement: "%"
       device_class: humidity
       state_class: measurement
-      value_template: "{{ value | float }}"
+      value_template: "{{ value_json.humidity | float }}"
+      availability_topic: "roomsense/room1/status"
+      payload_available: "online"
+      payload_not_available: "offline"
 
-    - name: "Room CO2"
-      unique_id: roomsense_co2
-      state_topic: "ndir/co2"
+    - name: "RoomSense Room 1 CO2"
+      unique_id: roomsense_room1_co2
+      default_entity_id: sensor.roomsense_room1_co2
+      state_topic: "roomsense/room1/telemetry"
       unit_of_measurement: "ppm"
       device_class: carbon_dioxide
       state_class: measurement
-      value_template: "{{ value | int }}"
+      value_template: "{{ value_json.co2 | int }}"
+      availability_topic: "roomsense/room1/status"
+      payload_available: "online"
+      payload_not_available: "offline"
+
+    - name: "RoomSense Room 2 Temperature"
+      unique_id: roomsense_room2_temperature
+      default_entity_id: sensor.roomsense_room2_temperature
+      state_topic: "roomsense/room2/telemetry"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      value_template: "{{ value_json.temperature | float }}"
+      availability_topic: "roomsense/room2/status"
+      payload_available: "online"
+      payload_not_available: "offline"
+
+    - name: "RoomSense Room 2 Humidity"
+      unique_id: roomsense_room2_humidity
+      default_entity_id: sensor.roomsense_room2_humidity
+      state_topic: "roomsense/room2/telemetry"
+      unit_of_measurement: "%"
+      device_class: humidity
+      state_class: measurement
+      value_template: "{{ value_json.humidity | float }}"
+      availability_topic: "roomsense/room2/status"
+      payload_available: "online"
+      payload_not_available: "offline"
+
+    - name: "RoomSense Room 2 CO2"
+      unique_id: roomsense_room2_co2
+      default_entity_id: sensor.roomsense_room2_co2
+      state_topic: "roomsense/room2/telemetry"
+      unit_of_measurement: "ppm"
+      device_class: carbon_dioxide
+      state_class: measurement
+      value_template: "{{ value_json.co2 | int }}"
+      availability_topic: "roomsense/room2/status"
+      payload_available: "online"
+      payload_not_available: "offline"
 
 automation: !include automations.yaml
