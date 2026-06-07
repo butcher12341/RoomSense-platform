@@ -91,3 +91,26 @@ mqtt:
       payload_not_available: "offline"
 
 automation: !include automations.yaml
+
+mqtt:
+  switch:
+    - name: "Klimatizacija"
+      unique_id: roomsense_aircond
+      command_topic: "room/aircond"
+      payload_on: "1"
+      payload_off: "0"
+      retain: true
+
+    - name: "Ventilacija"
+      unique_id: roomsense_airflow
+      command_topic: "room/airflow"
+      payload_on: "1"
+      payload_off: "0"
+      retain: true
+
+    - name: "Odvlaživanje"
+      unique_id: roomsense_dehumid
+      command_topic: "room/dehumid"
+      payload_on: "1"
+      payload_off: "0"
+      retain: true
