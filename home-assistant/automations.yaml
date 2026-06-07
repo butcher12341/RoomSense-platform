@@ -10,6 +10,10 @@
         title: "RoomSense room1 - CO2"
         message: "CO2 razina je {{ states('sensor.roomsense_room1_co2') }} ppm. Potrebno provjetravanje."
         notification_id: roomsense_room1_co2_alert
+    - service: mqtt.publish
+      data:
+        topic: "room1/airflow"
+        payload: "1"
 
 - id: roomsense_room1_co2_critical_alert
   alias: "RoomSense room1 CO2 kriticna razina"
@@ -23,13 +27,17 @@
         title: "RoomSense room1 - kriticno"
         message: "CO2 razina je {{ states('sensor.roomsense_room1_co2') }} ppm. Hitno provjetravanje."
         notification_id: roomsense_room1_co2_critical
+    - service: mqtt.publish
+      data:
+        topic: "room1/airflow"
+        payload: "1"
 
 - id: roomsense_room1_co2_normal
   alias: "RoomSense room1 CO2 normalizacija"
   trigger:
     - platform: numeric_state
       entity_id: sensor.roomsense_room1_co2
-      below: 800
+      below: 999
   action:
     - service: persistent_notification.dismiss
       data:
@@ -37,6 +45,10 @@
     - service: persistent_notification.dismiss
       data:
         notification_id: roomsense_room1_co2_critical
+    - service: mqtt.publish
+      data:
+        topic: "room1/airflow"
+        payload: "0"
 
 - id: roomsense_room1_temperature_high_alert
   alias: "RoomSense room1 temperatura previsoka"
@@ -50,6 +62,10 @@
         title: "RoomSense room1 - temperatura"
         message: "Temperatura je {{ states('sensor.roomsense_room1_temperature') }} °C. Previsoka."
         notification_id: roomsense_room1_temperature_alert
+    - service: mqtt.publish
+      data:
+        topic: "room1/aircond"
+        payload: "1"
 
 - id: roomsense_room1_temperature_low_alert
   alias: "RoomSense room1 temperatura preniska"
@@ -75,6 +91,10 @@
     - service: persistent_notification.dismiss
       data:
         notification_id: roomsense_room1_temperature_alert
+    - service: mqtt.publish
+      data:
+        topic: "room1/aircond"
+        payload: "0"
 
 - id: roomsense_room2_co2_high_alert
   alias: "RoomSense room2 CO2 visoka razina"
@@ -107,7 +127,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.roomsense_room2_co2
-      below: 800
+      below: 900
   action:
     - service: persistent_notification.dismiss
       data:
