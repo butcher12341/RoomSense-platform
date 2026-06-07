@@ -4,6 +4,6 @@ topic write roomsense/+/status
 
 user homeassistant
 topic read roomsense/#
-topic readwrite room/aircond
-topic readwrite room/airflow
-topic readwrite room/dehumid
+topic readwrite room1/aircond
+topic readwrite room1/airflow
+topic readwrite room1/dehumid
