@@ -10,10 +10,6 @@
         title: "RoomSense room1 - CO2"
         message: "CO2 razina je {{ states('sensor.roomsense_room1_co2') }} ppm. Potrebno provjetravanje."
         notification_id: roomsense_room1_co2_alert
-    - service: mqtt.publish
-      data:
-        topic: "room1/airflow"
-        payload: "1"
 
 - id: roomsense_room1_co2_critical_alert
   alias: "RoomSense room1 CO2 kriticna razina"
@@ -27,10 +23,9 @@
         title: "RoomSense room1 - kriticno"
         message: "CO2 razina je {{ states('sensor.roomsense_room1_co2') }} ppm. Hitno provjetravanje."
         notification_id: roomsense_room1_co2_critical
-    - service: mqtt.publish
-      data:
-        topic: "room1/airflow"
-        payload: "1"
+    - service: switch.turn_on
+      target:
+        entity_id: switch.ventilacija
 
 - id: roomsense_room1_co2_normal
   alias: "RoomSense room1 CO2 normalizacija"
@@ -45,10 +40,9 @@
     - service: persistent_notification.dismiss
       data:
         notification_id: roomsense_room1_co2_critical
-    - service: mqtt.publish
-      data:
-        topic: "room1/airflow"
-        payload: "0"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.ventilacija
 
 - id: roomsense_room1_temperature_high_alert
   alias: "RoomSense room1 temperatura previsoka"
@@ -62,10 +56,9 @@
         title: "RoomSense room1 - temperatura"
         message: "Temperatura je {{ states('sensor.roomsense_room1_temperature') }} °C. Previsoka."
         notification_id: roomsense_room1_temperature_alert
-    - service: mqtt.publish
-      data:
-        topic: "room1/aircond"
-        payload: "1"
+    - service: switch.turn_on
+      target:
+        entity_id: switch.klimatizacija
 
 - id: roomsense_room1_temperature_low_alert
   alias: "RoomSense room1 temperatura preniska"
@@ -79,6 +72,9 @@
         title: "RoomSense room1 - temperatura"
         message: "Temperatura je {{ states('sensor.roomsense_room1_temperature') }} °C. Preniska."
         notification_id: roomsense_room1_temperature_alert
+    - service: switch.turn_on
+      target:
+        entity_id: switch.klimatizacija
 
 - id: roomsense_room1_temperature_normal
   alias: "RoomSense room1 temperatura normalizacija"
@@ -91,10 +87,9 @@
     - service: persistent_notification.dismiss
       data:
         notification_id: roomsense_room1_temperature_alert
-    - service: mqtt.publish
-      data:
-        topic: "room1/aircond"
-        payload: "0"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.klimatizacija
 
 - id: roomsense_room1_humidity_high_alert
   alias: "RoomSense room1 vlaga previsoka"
@@ -108,10 +103,9 @@
         title: "RoomSense room1 - vlaga"
         message: "Vlaga je {{ states('sensor.roomsense_room1_humidity') }} %. Potrebno odvlaživanje."
         notification_id: roomsense_room1_humidity_alert
-    - service: mqtt.publish
-      data:
-        topic: "room1/dehumid"
-        payload: "1"
+    - service: switch.turn_on
+      target:
+        entity_id: switch.odvlazivanje
 
 - id: roomsense_room1_humidity_normal
   alias: "RoomSense room1 vlaga normalizacija"
@@ -123,10 +117,9 @@
     - service: persistent_notification.dismiss
       data:
         notification_id: roomsense_room1_humidity_alert
-    - service: mqtt.publish
-      data:
-        topic: "room1/dehumid"
-        payload: "0"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.odvlazivanje
 
 - id: roomsense_room2_co2_high_alert
   alias: "RoomSense room2 CO2 visoka razina"

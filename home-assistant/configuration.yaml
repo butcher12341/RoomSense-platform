@@ -87,6 +87,7 @@ mqtt:
       command_topic: "room1/aircond"
       payload_on: "1"
       payload_off: "0"
+      optimistic: true
       retain: true
 
     - name: "Ventilacija"
@@ -94,6 +95,7 @@ mqtt:
       command_topic: "room1/airflow"
       payload_on: "1"
       payload_off: "0"
+      optimistic: true
       retain: true
 
     - name: "Odvlaživanje"
@@ -101,6 +103,7 @@ mqtt:
       command_topic: "room1/dehumid"
       payload_on: "1"
       payload_off: "0"
+      optimistic: true
       retain: true
 
 automation: !include automations.yaml
