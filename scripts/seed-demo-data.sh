@@ -32,7 +32,7 @@ seed_snapshot() {
 seed_stream() {
   seed_snapshot
 
-  publish "roomsense/room1/telemetry" '{"temperature":24.1,"humidity":51.0,"co2":760}'
+  publish "roomsense/room1/telemetry" '{"temperature":44.1,"humidity":51.0,"co2":760}'
   publish "roomsense/room2/telemetry" '{"temperature":26.4,"humidity":58.0,"co2":1120}'
   sleep 7
 

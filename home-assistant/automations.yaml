@@ -96,6 +96,38 @@
         topic: "room1/aircond"
         payload: "0"
 
+- id: roomsense_room1_humidity_high_alert
+  alias: "RoomSense room1 vlaga previsoka"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.roomsense_room1_humidity
+      above: 70
+  action:
+    - service: persistent_notification.create
+      data:
+        title: "RoomSense room1 - vlaga"
+        message: "Vlaga je {{ states('sensor.roomsense_room1_humidity') }} %. Potrebno odvlaživanje."
+        notification_id: roomsense_room1_humidity_alert
+    - service: mqtt.publish
+      data:
+        topic: "room1/dehumid"
+        payload: "1"
+
+- id: roomsense_room1_humidity_normal
+  alias: "RoomSense room1 vlaga normalizacija"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.roomsense_room1_humidity
+      below: 65
+  action:
+    - service: persistent_notification.dismiss
+      data:
+        notification_id: roomsense_room1_humidity_alert
+    - service: mqtt.publish
+      data:
+        topic: "room1/dehumid"
+        payload: "0"
+
 - id: roomsense_room2_co2_high_alert
   alias: "RoomSense room2 CO2 visoka razina"
   trigger:
