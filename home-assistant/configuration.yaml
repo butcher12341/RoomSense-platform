@@ -90,9 +90,6 @@ mqtt:
       payload_available: "online"
       payload_not_available: "offline"
 
-automation: !include automations.yaml
-
-mqtt:
   switch:
     - name: "Klimatizacija"
       unique_id: roomsense_aircond
@@ -114,3 +111,5 @@ mqtt:
       payload_on: "1"
       payload_off: "0"
       retain: true
+
+automation: !include automations.yaml
