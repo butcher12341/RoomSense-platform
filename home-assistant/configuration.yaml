@@ -26,9 +26,6 @@ mqtt:
       device_class: temperature
       state_class: measurement
       value_template: "{{ value_json.temperature | float }}"
-      availability_topic: "roomsense/room1/status"
-      payload_available: "online"
-      payload_not_available: "offline"
 
     - name: "RoomSense Room 1 Humidity"
       unique_id: roomsense_room1_humidity
@@ -38,9 +35,6 @@ mqtt:
       device_class: humidity
       state_class: measurement
       value_template: "{{ value_json.humidity | float }}"
-      availability_topic: "roomsense/room1/status"
-      payload_available: "online"
-      payload_not_available: "offline"
 
     - name: "RoomSense Room 1 CO2"
       unique_id: roomsense_room1_co2
@@ -50,9 +44,6 @@ mqtt:
       device_class: carbon_dioxide
       state_class: measurement
       value_template: "{{ value_json.co2 | int }}"
-      availability_topic: "roomsense/room1/status"
-      payload_available: "online"
-      payload_not_available: "offline"
 
     - name: "RoomSense Room 2 Temperature"
       unique_id: roomsense_room2_temperature

@@ -1,3 +1,10 @@
+topic write roomsense/+/telemetry
+topic write roomsense/+/status
+topic read roomsense/#
+topic readwrite room1/aircond
+topic readwrite room1/airflow
+topic readwrite room1/dehumid
+
 user roomsense_esp32
 topic write roomsense/+/telemetry
 topic write roomsense/+/status
