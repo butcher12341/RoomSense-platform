@@ -33,23 +33,23 @@ seed_stream() {
   seed_snapshot
 
   publish "roomsense/room1/telemetry" '{"temperature":44.1,"humidity":51.0,"co2":760}'
-  publish "roomsense/room2/telemetry" '{"temperature":26.4,"humidity":58.0,"co2":1120}'
-  sleep 7
+  publish "roomsense/room2/telemetry" '{"temperature":120.4,"humidity":58.0,"co2":1120}'
+  sleep 5
 
-  publish "roomsense/room1/telemetry" '{"temperature":24.3,"humidity":51.5,"co2":820}'
-  publish "roomsense/room2/telemetry" '{"temperature":26.8,"humidity":59.0,"co2":1280}'
-  sleep 7
+  publish "roomsense/room1/telemetry" '{"temperature":24.3,"humidity":91.5,"co2":120}'
+  publish "roomsense/room2/telemetry" '{"temperature":26.8,"humidity":99.0,"co2":1280}'
+  sleep 5
 
-  publish "roomsense/room1/telemetry" '{"temperature":24.7,"humidity":52.0,"co2":910}'
-  publish "roomsense/room2/telemetry" '{"temperature":27.2,"humidity":60.5,"co2":1510}'
-  sleep 7
+  publish "roomsense/room1/telemetry" '{"temperature":24.7,"humidity":72.0,"co2":2110}'
+  publish "roomsense/room2/telemetry" '{"temperature":27.2,"humidity":70.5,"co2":1510}'
+  sleep 5
 
   publish "roomsense/room1/telemetry" '{"temperature":25.0,"humidity":53.0,"co2":1040}'
   publish "roomsense/room2/telemetry" '{"temperature":27.8,"humidity":62.0,"co2":2020}'
-  sleep 7
+  sleep 5
 
-  publish "roomsense/room1/telemetry" '{"temperature":24.8,"humidity":52.0,"co2":790}' "retain"
-  publish "roomsense/room2/telemetry" '{"temperature":27.0,"humidity":60.0,"co2":760}' "retain"
+  publish "roomsense/room1/telemetry" '{"temperature":24.8,"humidity":52.0,"co2":790}'
+  publish "roomsense/room2/telemetry" '{"temperature":27.0,"humidity":60.0,"co2":760}'
 }
 
 case "$MODE" in

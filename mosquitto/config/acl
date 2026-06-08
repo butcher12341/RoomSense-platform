@@ -4,6 +4,9 @@ topic read roomsense/#
 topic readwrite room1/aircond
 topic readwrite room1/airflow
 topic readwrite room1/dehumid
+topic readwrite room2/aircond
+topic readwrite room2/airflow
+topic readwrite room2/dehumid
 
 user roomsense_esp32
 topic write roomsense/+/telemetry
@@ -14,3 +17,6 @@ topic read roomsense/#
 topic readwrite room1/aircond
 topic readwrite room1/airflow
 topic readwrite room1/dehumid
+topic readwrite room2/aircond
+topic readwrite room2/airflow
+topic readwrite room2/dehumid

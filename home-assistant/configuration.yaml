@@ -106,4 +106,31 @@ mqtt:
       optimistic: true
       retain: true
 
+    - name: "Soba 2 Klimatizacija"
+      unique_id: roomsense_room2_aircond
+      default_entity_id: switch.roomsense_room2_klimatizacija
+      command_topic: "room2/aircond"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+    - name: "Soba 2 Ventilacija"
+      unique_id: roomsense_room2_airflow
+      default_entity_id: switch.roomsense_room2_ventilacija
+      command_topic: "room2/airflow"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+    - name: "Soba 2 Odvlaživanje"
+      unique_id: roomsense_room2_dehumid
+      default_entity_id: switch.roomsense_room2_odvlazivanje
+      command_topic: "room2/dehumid"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
 automation: !include automations.yaml

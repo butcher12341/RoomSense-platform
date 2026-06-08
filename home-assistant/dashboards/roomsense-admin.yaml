@@ -16,6 +16,9 @@ views:
           - sensor.roomsense_room1_temperature
           - sensor.roomsense_room1_humidity
           - sensor.roomsense_room1_co2
+          - switch.ventilacija
+          - switch.odvlazivanje
+          - switch.klimatizacija
 
       - type: entities
         title: Soba 2
@@ -23,3 +26,6 @@ views:
           - sensor.roomsense_room2_temperature
           - sensor.roomsense_room2_humidity
           - sensor.roomsense_room2_co2
+          - switch.roomsense_room2_ventilacija
+          - switch.roomsense_room2_odvlazivanje
+          - switch.roomsense_room2_klimatizacija

@@ -146,6 +146,9 @@
         title: "RoomSense room2 - kriticno"
         message: "CO2 razina je {{ states('sensor.roomsense_room2_co2') }} ppm. Hitno provjetravanje."
         notification_id: roomsense_room2_co2_critical
+    - service: switch.turn_on
+      target:
+        entity_id: switch.roomsense_room2_ventilacija
 
 - id: roomsense_room2_co2_normal
   alias: "RoomSense room2 CO2 normalizacija"
@@ -160,6 +163,9 @@
     - service: persistent_notification.dismiss
       data:
         notification_id: roomsense_room2_co2_critical
+    - service: switch.turn_off
+      target:
+        entity_id: switch.roomsense_room2_ventilacija
 
 - id: roomsense_room2_temperature_high_alert
   alias: "RoomSense room2 temperatura previsoka"
@@ -173,6 +179,9 @@
         title: "RoomSense room2 - temperatura"
         message: "Temperatura je {{ states('sensor.roomsense_room2_temperature') }} °C. Previsoka."
         notification_id: roomsense_room2_temperature_alert
+    - service: switch.turn_on
+      target:
+        entity_id: switch.roomsense_room2_klimatizacija
 
 - id: roomsense_room2_temperature_low_alert
   alias: "RoomSense room2 temperatura preniska"
@@ -186,6 +195,9 @@
         title: "RoomSense room2 - temperatura"
         message: "Temperatura je {{ states('sensor.roomsense_room2_temperature') }} °C. Preniska."
         notification_id: roomsense_room2_temperature_alert
+    - service: switch.turn_on
+      target:
+        entity_id: switch.roomsense_room2_klimatizacija
 
 - id: roomsense_room2_temperature_normal
   alias: "RoomSense room2 temperatura normalizacija"
@@ -198,3 +210,36 @@
     - service: persistent_notification.dismiss
       data:
         notification_id: roomsense_room2_temperature_alert
+    - service: switch.turn_off
+      target:
+        entity_id: switch.roomsense_room2_klimatizacija
+
+- id: roomsense_room2_humidity_high_alert
+  alias: "RoomSense room2 vlaga previsoka"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.roomsense_room2_humidity
+      above: 70
+  action:
+    - service: persistent_notification.create
+      data:
+        title: "RoomSense room2 - vlaga"
+        message: "Vlaga je {{ states('sensor.roomsense_room2_humidity') }} %. Potrebno odvlaživanje."
+        notification_id: roomsense_room2_humidity_alert
+    - service: switch.turn_on
+      target:
+        entity_id: switch.roomsense_room2_odvlazivanje
+
+- id: roomsense_room2_humidity_normal
+  alias: "RoomSense room2 vlaga normalizacija"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.roomsense_room2_humidity
+      below: 65
+  action:
+    - service: persistent_notification.dismiss
+      data:
+        notification_id: roomsense_room2_humidity_alert
+    - service: switch.turn_off
+      target:
+        entity_id: switch.roomsense_room2_odvlazivanje

@@ -3,8 +3,8 @@ views:
     path: room1
     icon: mdi:door
     visible:
-      - user: 404c39f6490d4cebb4505bb87879724f
-      - user: 98f8b9391bf24783a9a3f1a791e0f69f
+      - user: 404c39f6490d4cebb4505bb87879724f #admin
+      - user: 98f8b9391bf24783a9a3f1a791e0f69f #user1
     cards:
       - type: entities
         title: Soba 1
@@ -15,6 +15,12 @@ views:
             name: Vlaga
           - entity: sensor.roomsense_room1_co2
             name: CO2
+          - entity: switch.ventilacija
+            name: Ventilacija
+          - entity: switch.odvlazivanje
+            name: Odvlazivanje
+          - entity: switch.klimatizacija
+            name: Klimatizacija
       - type: history-graph
         title: Povijest mjerenja
         hours_to_show: 1
@@ -39,6 +45,12 @@ views:
             name: Vlaga
           - entity: sensor.roomsense_room2_co2
             name: CO2
+          - entity: switch.roomsense_room2_ventilacija
+            name: Ventilacija
+          - entity: switch.roomsense_room2_odvlazivanje
+            name: Odvlazivanje
+          - entity: switch.roomsense_room2_klimatizacija
+            name: Klimatizacija
       - type: history-graph
         title: Povijest mjerenja
         hours_to_show: 1
